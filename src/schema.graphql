@@ -5,6 +5,7 @@ type Query {
   drafts: [Post!]!
   post(id: ID!): Post
   posts: [Post!]!
+  topPicks(topPostsCount: Int!): [Post!]!
   welcomePost: Post
   searchCategories(value: String!): [Category!]!
   appState: AppState!

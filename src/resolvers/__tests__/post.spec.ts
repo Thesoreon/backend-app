@@ -1,7 +1,7 @@
 import { prisma } from '../../generated/prisma-client/'
 import * as allResolvers from '../index'
 
-const resolvers = allResolvers.default
+const resolvers = allResolvers.resolvers
 
 test.skip("creating draft post won't work for unauthorized", async () => {
   const parent = undefined

@@ -6,6 +6,16 @@ export const Query: QueryResolvers.Type = {
     return ctx.prisma.posts({ where: { isPublished: true } })
   },
 
+  topPicks(_parent, { topPostsCount }, ctx) {
+    return ctx.prisma.posts({
+      where: {
+        isPublished: true,
+      },
+      first: topPostsCount,
+      orderBy: 'positiveCount_DESC',
+    })
+  },
+
   drafts(_parent, _args, ctx) {
     const id = getUserIdOrThrowError(ctx)
 

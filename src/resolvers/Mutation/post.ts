@@ -70,10 +70,23 @@ export const post: PostMutationResolvers = {
       },
     })
 
+    const positiveCount = await ctx.prisma
+      .post({
+        id: postId,
+      })
+      .then(result => {
+        if (userVote.length) return result.positiveCount
+
+        return voteType === 'LIKE'
+          ? result.positiveCount! + 1
+          : result.positiveCount! - 1
+      })
+
     const voteId = userVote.length ? userVote[0].id : ''
     return ctx.prisma.updatePost({
       where: { id: postId },
       data: {
+        positiveCount,
         votes: {
           upsert: {
             where: {
@@ -109,9 +122,26 @@ export const post: PostMutationResolvers = {
       )
     }
 
+    const voteType = await ctx.prisma
+      .vote({
+        id: voteId,
+      })
+      .then(result => result.type)
+
+    const positiveCount = await ctx.prisma
+      .post({
+        id: postId,
+      })
+      .then(result =>
+        voteType === 'LIKE'
+          ? result.positiveCount! - 1
+          : result.positiveCount! + 1,
+      )
+
     return ctx.prisma.updatePost({
       where: { id: postId },
       data: {
+        positiveCount,
         votes: {
           delete: {
             id: voteId,

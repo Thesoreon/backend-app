@@ -363,7 +363,9 @@ export type PostOrderByInput =
   | "text_ASC"
   | "text_DESC"
   | "thumbnail_ASC"
-  | "thumbnail_DESC";
+  | "thumbnail_DESC"
+  | "positiveCount_ASC"
+  | "positiveCount_DESC";
 
 export type AppStateOrderByInput =
   | "id_ASC"
@@ -470,6 +472,7 @@ export interface PostCreateWithoutVotesInput {
   author: UserCreateOneWithoutPostsInput;
   subCategories?: SubCategoryCreateManyWithoutPostsInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface CategoryWhereInput {
@@ -784,6 +787,7 @@ export interface PostCreateWithoutAuthorInput {
   votes?: VoteCreateManyWithoutPostInput;
   subCategories?: SubCategoryCreateManyWithoutPostsInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface PostUpdateInput {
@@ -795,6 +799,7 @@ export interface PostUpdateInput {
   votes?: VoteUpdateManyWithoutPostInput;
   subCategories?: SubCategoryUpdateManyWithoutPostsInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface CategoryUpdateInput {
@@ -981,6 +986,14 @@ export interface PostScalarWhereInput {
   thumbnail_not_starts_with?: String;
   thumbnail_ends_with?: String;
   thumbnail_not_ends_with?: String;
+  positiveCount?: Int;
+  positiveCount_not?: Int;
+  positiveCount_in?: Int[] | Int;
+  positiveCount_not_in?: Int[] | Int;
+  positiveCount_lt?: Int;
+  positiveCount_lte?: Int;
+  positiveCount_gt?: Int;
+  positiveCount_gte?: Int;
   AND?: PostScalarWhereInput[] | PostScalarWhereInput;
   OR?: PostScalarWhereInput[] | PostScalarWhereInput;
   NOT?: PostScalarWhereInput[] | PostScalarWhereInput;
@@ -994,6 +1007,7 @@ export interface PostUpdateWithoutSubCategoriesDataInput {
   author?: UserUpdateOneRequiredWithoutPostsInput;
   votes?: VoteUpdateManyWithoutPostInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface PostUpdateWithoutAuthorDataInput {
@@ -1004,6 +1018,7 @@ export interface PostUpdateWithoutAuthorDataInput {
   votes?: VoteUpdateManyWithoutPostInput;
   subCategories?: SubCategoryUpdateManyWithoutPostsInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export type CategoryWhereUniqueInput = AtLeastOne<{
@@ -1113,6 +1128,7 @@ export interface PostUpdateWithoutVotesDataInput {
   author?: UserUpdateOneRequiredWithoutPostsInput;
   subCategories?: SubCategoryUpdateManyWithoutPostsInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface VoteSubscriptionWhereInput {
@@ -1242,6 +1258,14 @@ export interface PostWhereInput {
   thumbnail_not_starts_with?: String;
   thumbnail_ends_with?: String;
   thumbnail_not_ends_with?: String;
+  positiveCount?: Int;
+  positiveCount_not?: Int;
+  positiveCount_in?: Int[] | Int;
+  positiveCount_not_in?: Int[] | Int;
+  positiveCount_lt?: Int;
+  positiveCount_lte?: Int;
+  positiveCount_gt?: Int;
+  positiveCount_gte?: Int;
   AND?: PostWhereInput[] | PostWhereInput;
   OR?: PostWhereInput[] | PostWhereInput;
   NOT?: PostWhereInput[] | PostWhereInput;
@@ -1383,6 +1407,7 @@ export interface PostCreateInput {
   votes?: VoteCreateManyWithoutPostInput;
   subCategories?: SubCategoryCreateManyWithoutPostsInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface CategoryUpsertWithWhereUniqueWithoutSubCategoriesInput {
@@ -1453,6 +1478,7 @@ export interface PostUpdateManyDataInput {
   title?: String;
   text?: String;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface CategoryUpdateManyWithWhereNestedInput {
@@ -1543,6 +1569,7 @@ export interface PostCreateWithoutSubCategoriesInput {
   author: UserCreateOneWithoutPostsInput;
   votes?: VoteCreateManyWithoutPostInput;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface SubCategoryUpdateManyWithWhereNestedInput {
@@ -1760,6 +1787,7 @@ export interface PostUpdateManyMutationInput {
   title?: String;
   text?: String;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface SubCategorySubscriptionWhereInput {
@@ -1978,6 +2006,7 @@ export interface Post {
   title: String;
   text: String;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface PostPromise extends Promise<Post>, Fragmentable {
@@ -2012,6 +2041,7 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
     }
   ) => T;
   thumbnail: () => Promise<String>;
+  positiveCount: () => Promise<Int>;
 }
 
 export interface PostSubscription
@@ -2048,6 +2078,7 @@ export interface PostSubscription
     }
   ) => T;
   thumbnail: () => Promise<AsyncIterator<String>>;
+  positiveCount: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AggregateVote {
@@ -2681,6 +2712,7 @@ export interface PostPreviousValues {
   title: String;
   text: String;
   thumbnail?: String;
+  positiveCount?: Int;
 }
 
 export interface PostPreviousValuesPromise
@@ -2694,6 +2726,7 @@ export interface PostPreviousValuesPromise
   title: () => Promise<String>;
   text: () => Promise<String>;
   thumbnail: () => Promise<String>;
+  positiveCount: () => Promise<Int>;
 }
 
 export interface PostPreviousValuesSubscription
@@ -2707,6 +2740,7 @@ export interface PostPreviousValuesSubscription
   title: () => Promise<AsyncIterator<String>>;
   text: () => Promise<AsyncIterator<String>>;
   thumbnail: () => Promise<AsyncIterator<String>>;
+  positiveCount: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface PostSubscriptionPayload {

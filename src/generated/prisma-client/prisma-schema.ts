@@ -424,6 +424,7 @@ type Post {
   votes(where: VoteWhereInput, orderBy: VoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Vote!]
   subCategories(where: SubCategoryWhereInput, orderBy: SubCategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SubCategory!]
   thumbnail: String
+  positiveCount: Int
 }
 
 type PostConnection {
@@ -441,6 +442,7 @@ input PostCreateInput {
   votes: VoteCreateManyWithoutPostInput
   subCategories: SubCategoryCreateManyWithoutPostsInput
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostCreateManyWithoutAuthorInput {
@@ -466,6 +468,7 @@ input PostCreateWithoutAuthorInput {
   votes: VoteCreateManyWithoutPostInput
   subCategories: SubCategoryCreateManyWithoutPostsInput
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostCreateWithoutSubCategoriesInput {
@@ -476,6 +479,7 @@ input PostCreateWithoutSubCategoriesInput {
   author: UserCreateOneWithoutPostsInput!
   votes: VoteCreateManyWithoutPostInput
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostCreateWithoutVotesInput {
@@ -486,6 +490,7 @@ input PostCreateWithoutVotesInput {
   author: UserCreateOneWithoutPostsInput!
   subCategories: SubCategoryCreateManyWithoutPostsInput
   thumbnail: String
+  positiveCount: Int
 }
 
 type PostEdge {
@@ -510,6 +515,8 @@ enum PostOrderByInput {
   text_DESC
   thumbnail_ASC
   thumbnail_DESC
+  positiveCount_ASC
+  positiveCount_DESC
 }
 
 type PostPreviousValues {
@@ -521,6 +528,7 @@ type PostPreviousValues {
   title: String!
   text: String!
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostScalarWhereInput {
@@ -612,6 +620,14 @@ input PostScalarWhereInput {
   thumbnail_not_starts_with: String
   thumbnail_ends_with: String
   thumbnail_not_ends_with: String
+  positiveCount: Int
+  positiveCount_not: Int
+  positiveCount_in: [Int!]
+  positiveCount_not_in: [Int!]
+  positiveCount_lt: Int
+  positiveCount_lte: Int
+  positiveCount_gt: Int
+  positiveCount_gte: Int
   AND: [PostScalarWhereInput!]
   OR: [PostScalarWhereInput!]
   NOT: [PostScalarWhereInput!]
@@ -644,6 +660,7 @@ input PostUpdateInput {
   votes: VoteUpdateManyWithoutPostInput
   subCategories: SubCategoryUpdateManyWithoutPostsInput
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostUpdateManyDataInput {
@@ -652,6 +669,7 @@ input PostUpdateManyDataInput {
   title: String
   text: String
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostUpdateManyMutationInput {
@@ -660,6 +678,7 @@ input PostUpdateManyMutationInput {
   title: String
   text: String
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostUpdateManyWithoutAuthorInput {
@@ -708,6 +727,7 @@ input PostUpdateWithoutAuthorDataInput {
   votes: VoteUpdateManyWithoutPostInput
   subCategories: SubCategoryUpdateManyWithoutPostsInput
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostUpdateWithoutSubCategoriesDataInput {
@@ -718,6 +738,7 @@ input PostUpdateWithoutSubCategoriesDataInput {
   author: UserUpdateOneRequiredWithoutPostsInput
   votes: VoteUpdateManyWithoutPostInput
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostUpdateWithoutVotesDataInput {
@@ -728,6 +749,7 @@ input PostUpdateWithoutVotesDataInput {
   author: UserUpdateOneRequiredWithoutPostsInput
   subCategories: SubCategoryUpdateManyWithoutPostsInput
   thumbnail: String
+  positiveCount: Int
 }
 
 input PostUpdateWithWhereUniqueWithoutAuthorInput {
@@ -853,6 +875,14 @@ input PostWhereInput {
   thumbnail_not_starts_with: String
   thumbnail_ends_with: String
   thumbnail_not_ends_with: String
+  positiveCount: Int
+  positiveCount_not: Int
+  positiveCount_in: [Int!]
+  positiveCount_not_in: [Int!]
+  positiveCount_lt: Int
+  positiveCount_lte: Int
+  positiveCount_gt: Int
+  positiveCount_gte: Int
   AND: [PostWhereInput!]
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]

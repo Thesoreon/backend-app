@@ -8,7 +8,7 @@ import {
   SubCategory,
   Category,
   AppState,
-} from './prisma-client'
+} from './prisma-client/index'
 import { AuthPayload, Context } from '../utils'
 
 export type UserRole = 'MEMBER' | 'EDITOR' | 'ADMIN'
@@ -57,12 +57,18 @@ export type PostOrderByInput =
   | 'text_DESC'
   | 'thumbnail_ASC'
   | 'thumbnail_DESC'
+  | 'positiveCount_ASC'
+  | 'positiveCount_DESC'
 
 export namespace QueryResolvers {
   export const defaultResolvers = {}
 
   export interface ArgsPost {
     id: string
+  }
+
+  export interface ArgsTopPicks {
+    topPostsCount: number
   }
 
   export interface ArgsSearchCategories {
@@ -93,6 +99,13 @@ export namespace QueryResolvers {
   export type PostsResolver = (
     parent: undefined,
     args: {},
+    ctx: Context,
+    info: GraphQLResolveInfo,
+  ) => Post[] | Promise<Post[]>
+
+  export type TopPicksResolver = (
+    parent: undefined,
+    args: ArgsTopPicks,
     ctx: Context,
     info: GraphQLResolveInfo,
   ) => Post[] | Promise<Post[]>
@@ -154,6 +167,13 @@ export namespace QueryResolvers {
       info: GraphQLResolveInfo,
     ) => Post[] | Promise<Post[]>
 
+    topPicks: (
+      parent: undefined,
+      args: ArgsTopPicks,
+      ctx: Context,
+      info: GraphQLResolveInfo,
+    ) => Post[] | Promise<Post[]>
+
     welcomePost: (
       parent: undefined,
       args: {},
@@ -195,6 +215,8 @@ export namespace PostResolvers {
     text: (parent: Post) => parent.text,
     thumbnail: (parent: Post) =>
       parent.thumbnail === undefined ? null : parent.thumbnail,
+    positiveCount: (parent: Post) =>
+      parent.positiveCount === undefined ? null : parent.positiveCount,
   }
 
   export interface VoteWhereInput {
@@ -514,6 +536,14 @@ export namespace PostResolvers {
     thumbnail_not_starts_with?: string | null
     thumbnail_ends_with?: string | null
     thumbnail_not_ends_with?: string | null
+    positiveCount?: number | null
+    positiveCount_not?: number | null
+    positiveCount_in?: number[] | null
+    positiveCount_not_in?: number[] | null
+    positiveCount_lt?: number | null
+    positiveCount_lte?: number | null
+    positiveCount_gt?: number | null
+    positiveCount_gte?: number | null
     AND?: PostWhereInput[] | null
     OR?: PostWhereInput[] | null
     NOT?: PostWhereInput[] | null
@@ -668,6 +698,13 @@ export namespace PostResolvers {
     info: GraphQLResolveInfo,
   ) => string | null | Promise<string | null>
 
+  export type PositiveCountResolver = (
+    parent: Post,
+    args: {},
+    ctx: Context,
+    info: GraphQLResolveInfo,
+  ) => number | null | Promise<number | null>
+
   export interface Type {
     id: (
       parent: Post,
@@ -745,6 +782,13 @@ export namespace PostResolvers {
       ctx: Context,
       info: GraphQLResolveInfo,
     ) => string | null | Promise<string | null>
+
+    positiveCount: (
+      parent: Post,
+      args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo,
+    ) => number | null | Promise<number | null>
   }
 }
 
@@ -1094,6 +1138,14 @@ export namespace SubCategoryResolvers {
     thumbnail_not_starts_with?: string | null
     thumbnail_ends_with?: string | null
     thumbnail_not_ends_with?: string | null
+    positiveCount?: number | null
+    positiveCount_not?: number | null
+    positiveCount_in?: number[] | null
+    positiveCount_not_in?: number[] | null
+    positiveCount_lt?: number | null
+    positiveCount_lte?: number | null
+    positiveCount_gt?: number | null
+    positiveCount_gte?: number | null
     AND?: PostWhereInput[] | null
     OR?: PostWhereInput[] | null
     NOT?: PostWhereInput[] | null
@@ -1638,6 +1690,14 @@ export namespace CategoryResolvers {
     thumbnail_not_starts_with?: string | null
     thumbnail_ends_with?: string | null
     thumbnail_not_ends_with?: string | null
+    positiveCount?: number | null
+    positiveCount_not?: number | null
+    positiveCount_in?: number[] | null
+    positiveCount_not_in?: number[] | null
+    positiveCount_lt?: number | null
+    positiveCount_lte?: number | null
+    positiveCount_gt?: number | null
+    positiveCount_gte?: number | null
     AND?: PostWhereInput[] | null
     OR?: PostWhereInput[] | null
     NOT?: PostWhereInput[] | null

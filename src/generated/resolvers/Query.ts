@@ -17,6 +17,9 @@ export const Query: QueryResolvers.Type = {
   posts: (parent, args, ctx) => {
     throw new Error('Resolver not implemented')
   },
+  topPicks: (parent, args, ctx) => {
+    throw new Error('Resolver not implemented')
+  },
   welcomePost: (parent, args, ctx) => {
     throw new Error('Resolver not implemented')
   },

@@ -10,6 +10,7 @@ type Post {
   votes: [Vote!]!
   subCategories: [SubCategory!]!
   thumbnail: String
+  positiveCount: Int! @default(value: 0)
 }
 
 type Category {
