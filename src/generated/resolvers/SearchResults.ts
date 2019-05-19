@@ -1,21 +1,18 @@
 // This resolver file was scaffolded by github.com/prisma/graphqlgen, DO NOT EDIT.
 // Please do not import this file directly but copy & paste to your application code.
 
-import { PostResolvers } from '../graphqlgen'
+import { SearchResultsResolvers } from '../graphqlgen'
 
-export const Post: PostResolvers.Type = {
-  ...PostResolvers.defaultResolvers,
+export const SearchResults: SearchResultsResolvers.Type = {
+  ...SearchResultsResolvers.defaultResolvers,
 
-  author: (parent, args, ctx) => {
-    throw new Error('Resolver not implemented')
-  },
-  votes: (parent, args, ctx) => {
+  posts: (parent, args, ctx) => {
     throw new Error('Resolver not implemented')
   },
   subCategories: (parent, args, ctx) => {
     throw new Error('Resolver not implemented')
   },
-  VoteSummary: (parent, args, ctx) => {
+  categories: (parent, args, ctx) => {
     throw new Error('Resolver not implemented')
   },
 }
